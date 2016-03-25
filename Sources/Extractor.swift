@@ -107,7 +107,7 @@ extension Extractor: CustomStringConvertible {
 //
 // `ArraySlice` is used for performance optimization.
 // See https://gist.github.com/norio-nomura/d9ec7212f2cfde3fb662.
-private func valueFor<C: CollectionType where C.Generator.Element == String, C.SubSequence == C>(keyPathComponents: C, _ JSON: AnyJSON) -> AnyJSON? {
+private func valueFor<C: Collection where C.Iterator.Element == String, C.SubSequence == C>(keyPathComponents: C, _ JSON: AnyJSON) -> AnyJSON? {
     #if os(Linux)
     guard let
         first = keyPathComponents.first,

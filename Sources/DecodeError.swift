@@ -6,7 +6,7 @@
 //  Copyright © 2015 Syo Ikeda. All rights reserved.
 //
 
-public enum DecodeError: ErrorType {
+public enum DecodeError: ErrorProtocol {
     case MissingKeyPath(KeyPath)
     case TypeMismatch(expected: String, actual: String, keyPath: KeyPath)
     case Custom(String)
