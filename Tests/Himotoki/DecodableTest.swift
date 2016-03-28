@@ -111,9 +111,9 @@ class DecodableTest: XCTestCase {
     func testPerformanceByPersons() {
         let peopleJSON = Array(repeating: personJSON, count: 500)
 
-//        measureBlock {
-//            _ = try? [Person].decode(peopleJSON)
-//        }
+        measure {
+            _ = try? [Person].decode(peopleJSON)
+        }
     }
 #endif
 
