@@ -41,6 +41,12 @@ private struct URLsByTransformer: Decodable {
 }
 
 class TransformerTest: XCTestCase {
+    static var allTests: [(String, TransformerTest -> () throws -> Void)] {
+        return [
+            ("testTransformerSuccess", testTransformerSuccess),
+            ("testTransformerFailure", testTransformerFailure),
+        ]
+    }
 
     func testTransformerSuccess() {
         let URLString = "http://www.yahoo.co.jp/"
@@ -82,16 +88,3 @@ class TransformerTest: XCTestCase {
         }
     }
 }
-
-#if os(Linux)
-
-extension TransformerTest: XCTestCaseProvider {
-    var allTests: [(String, () throws -> Void)] {
-        return [
-            ("testTransformerSuccess", testTransformerSuccess),
-            ("testTransformerFailure", testTransformerFailure),
-        ]
-    }
-}
-
-#endif

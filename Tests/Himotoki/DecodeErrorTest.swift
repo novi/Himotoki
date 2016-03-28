@@ -51,6 +51,14 @@ private struct B: Decodable {
 }
 
 class DecodeErrorTest: XCTestCase {
+    static var allTests: [(String, DecodeErrorTest -> () throws -> Void)] {
+        return [
+            ("testMissingKeyPathInDecodeError", testMissingKeyPathInDecodeError),
+            ("testMissingKeyPathAndDecodeFailure", testMissingKeyPathAndDecodeFailure),
+            ("testCustomError", testCustomError),
+            ("testHashableConformance", testHashableConformance),
+        ]
+    }
 
     func testSuccessOfCastOrFail() {
         do {
@@ -113,18 +121,3 @@ class DecodeErrorTest: XCTestCase {
         XCTAssertEqual(customError.hashValue, customError.hashValue)
     }
 }
-
-#if os(Linux)
-
-extension DecodeErrorTest: XCTestCaseProvider {
-    var allTests: [(String, () throws -> Void)] {
-        return [
-            ("testMissingKeyPathInDecodeError", testMissingKeyPathInDecodeError),
-            ("testMissingKeyPathAndDecodeFailure", testMissingKeyPathAndDecodeFailure),
-            ("testCustomError", testCustomError),
-            ("testHashableConformance", testHashableConformance),
-        ]
-    }
-}
-
-#endif

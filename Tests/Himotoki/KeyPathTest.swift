@@ -10,6 +10,12 @@ import XCTest
 import Himotoki
 
 class KeyPathTest: XCTestCase {
+    static var allTests: [(String, KeyPathTest -> () throws -> Void)] {
+        return [
+            ("testEmptyKeyPath", testEmptyKeyPath),
+            ("testNilLiteral", testNilLiteral),
+        ]
+    }
 
     func testEmptyKeyPath() {
         let empty = KeyPath.empty
@@ -21,16 +27,3 @@ class KeyPathTest: XCTestCase {
         XCTAssertEqual(fromNilLiteral, KeyPath.empty)
     }
 }
-
-#if os(Linux)
-
-extension KeyPathTest: XCTestCaseProvider {
-    var allTests: [(String, () throws -> Void)] {
-        return [
-            ("testEmptyKeyPath", testEmptyKeyPath),
-            ("testNilLiteral", testNilLiteral),
-        ]
-    }
-}
-    
-#endif

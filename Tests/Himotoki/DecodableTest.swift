@@ -14,6 +14,16 @@ typealias JSONArray = [AnyJSON]
 typealias JSONDictionary = [String: AnyJSON]
 
 class DecodableTest: XCTestCase {
+    static var allTests: [(String, DecodableTest -> () throws -> Void)] {
+        return [
+            ("testPerson", testPerson),
+//            ("testPerformanceByPersons", testPerformanceByPersons),
+            ("testGroup", testGroup),
+            ("testDecodeArray", testDecodeArray),
+            ("testDecodeDictionary", testDecodeDictionary),
+            ("testDecodeNumbers", testDecodeNumbers),
+        ]
+    }
 
     lazy var personJSON: JSONDictionary = {
         let gruopJSON: JSONDictionary = [ "name": "Himotoki", "floor": 12 ]
@@ -173,23 +183,6 @@ class DecodableTest: XCTestCase {
     }
 
 }
-
-#if os(Linux)
-
-extension DecodableTest: XCTestCaseProvider {
-    var allTests: [(String, () throws -> Void)] {
-        return [
-            ("testPerson", testPerson),
-//            ("testPerformanceByPersons", testPerformanceByPersons),
-            ("testGroup", testGroup),
-            ("testDecodeArray", testDecodeArray),
-            ("testDecodeDictionary", testDecodeDictionary),
-            ("testDecodeNumbers", testDecodeNumbers),
-        ]
-    }
-}
-
-#endif
 
 struct Person: Decodable {
     let firstName: String

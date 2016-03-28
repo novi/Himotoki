@@ -10,6 +10,13 @@ import XCTest
 import Himotoki
 
 class DecodeWithRootKeyPathTest: XCTestCase {
+    static var allTests: [(String, DecodeWithRootKeyPathTest -> () throws -> Void)] {
+        return [
+            ("testDecodeWithRootKeyValue", testDecodeWithRootKeyValue),
+            ("testDecodeWithRootKeyArray", testDecodeWithRootKeyArray),
+            ("testDecodeWithRootKeyDictionary", testDecodeWithRootKeyDictionary),
+        ]
+    }
 
     lazy var JSON: JSONDictionary = {
         return [
@@ -59,17 +66,3 @@ class DecodeWithRootKeyPathTest: XCTestCase {
         XCTAssertEqual(groups?.keys.contains("bar"), true)
     }
 }
-
-#if os(Linux)
-
-extension DecodeWithRootKeyPathTest: XCTestCaseProvider {
-    var allTests: [(String, () throws -> Void)] {
-        return [
-            ("testDecodeWithRootKeyValue", testDecodeWithRootKeyValue),
-            ("testDecodeWithRootKeyArray", testDecodeWithRootKeyArray),
-            ("testDecodeWithRootKeyDictionary", testDecodeWithRootKeyDictionary),
-        ]
-    }
-}
-
-#endif

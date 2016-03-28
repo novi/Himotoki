@@ -10,6 +10,12 @@ import XCTest
 import Himotoki
 
 class NestedObjectParsingTest: XCTestCase {
+    static var allTests: [(String, NestedObjectParsingTest -> () throws -> Void)] {
+        return [
+            ("testParseNestedObjectSuccess", testParseNestedObjectSuccess),
+            ("testParseNestedObjectFailure", testParseNestedObjectFailure),
+        ]
+    }
 
     func testParseNestedObjectSuccess() {
         let JSON: JSONDictionary = [ "nested": [ "name": "Foo Bar" ] as JSONDictionary ]
@@ -24,19 +30,6 @@ class NestedObjectParsingTest: XCTestCase {
         XCTAssertNil(failure)
     }
 }
-
-#if os(Linux)
-
-extension NestedObjectParsingTest: XCTestCaseProvider {
-    var allTests: [(String, () throws -> Void)] {
-        return [
-            ("testParseNestedObjectSuccess", testParseNestedObjectSuccess),
-            ("testParseNestedObjectFailure", testParseNestedObjectFailure),
-        ]
-    }
-}
-
-#endif
 
 struct WithNestedObject: Decodable {
     let nestedName: String
